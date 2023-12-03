@@ -84,17 +84,12 @@ int main(int argc, char *argv[])
 
 int collatz(long long int n)
 {
-    int length = 1; // Initializing length as 1 since the number itself is included
-
-    while (n != 1) {
-        if (n % 2 == 0) {
-            n = n / 2;
-        } else {
-            n = 3 * n + 1;
-        }
-        length++;
+     if (n == 1) {
+        return 1; // Base case: sequence length for 1 is 1
+    } else if (n % 2 == 0) {
+        return 1 + collatz(n / 2); // If even, divide by 2
+    } else {
+        return 1 + collatz(3 * n + 1); // If odd, perform 3n + 1
     }
-
-    return length;
 
 }
