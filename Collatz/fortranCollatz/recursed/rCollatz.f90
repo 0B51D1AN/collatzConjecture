@@ -78,25 +78,20 @@ program Collatz
     enddo
 
 contains
-    function collatzNum(n) result(length)
+    recursive function collatzNum(n) result(length)
         integer, intent(in) :: n
-        integer :: length, t
+        integer :: length
 
-        t = n
-        length = 1 ! Initializing length as 1 since the number itself is included
-        do while (t /= 1)
-            if (mod(t, 2) == 0) then
-                t = t / 2
-            else
-                t = 3 * t + 1
-            endif
-            length = length + 1
-        end do
-        
-        ! Return the calculated length
-        return
+        if (n == 1) then
+            length = 1
+        else if (mod(n, 2) == 0) then
+            length = 1 + collatzNum(n / 2)
+        else
+            length = 1 + collatzNum(3 * n + 1)
+        endif
     end function collatzNum
-    
+
+
     subroutine swap(a, b)
         integer, dimension(:), intent(inout) :: a, b
         integer :: temp

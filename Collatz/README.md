@@ -5,6 +5,8 @@ then run the executable a.out
 
 Fortran
 
+Compile program by writing "gfortran filename"
+run executable
 
 GO
 
